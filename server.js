@@ -1,6 +1,6 @@
 import express from "express";
 import { connectDb } from "./config/db.js";
-
+import { app } from "./app.js";
 
 const server = express();
 
@@ -16,3 +16,5 @@ const startServer = async () => {
 }
 
 startServer();
+
+server.use(app);
