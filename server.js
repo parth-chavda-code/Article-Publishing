@@ -1,5 +1,5 @@
 import express from "express";
-import { connectDb } from "./config/db";
+import { connectDb } from "./config/db.js";
 
 
 const server = express();
