@@ -1,7 +1,7 @@
 import express from "express";
-import { userSignupController } from "../controllers/userController.js";
+import { userSignupController, userSigninController } from "../controllers/userController.js";
 import { validationBody } from "../middlewares/zodValidation.js";
-import { signupZodSchema } from "../schema/userZodSchema.js";
+import { signupZodSchema, signinZodSchema } from "../schema/userZodSchema.js";
 
 const userRouter = express.Router();
 //User Signup
@@ -10,4 +10,6 @@ const userRouter = express.Router();
 //userSignupController = route handler, handle post request here,
 userRouter.post("/signup", validationBody(signupZodSchema), userSignupController);
 
+//User signin
+userRouter.post("/signin", validationBody(signinZodSchema), userSigninController);
 export { userRouter };
