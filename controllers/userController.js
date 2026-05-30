@@ -15,12 +15,12 @@ export const userSignupController = async (req, res) => {
 
     try {
         //password hashing
-        const passwordHashing = await bcrypt.hash(password, 10);
+        const hashedPassword = await bcrypt.hash(password, 10);
 
         //create user
         const user = userModel.create({
             email,
-            password,
+            password: hashedPassword,
             firstName,
             lastName
         });
