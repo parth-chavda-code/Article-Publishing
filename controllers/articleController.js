@@ -41,3 +41,18 @@ export const publishArticle = async (req, res) => {
 
     }
 }
+
+//Get All the articles
+export const allArticle = async (req, res) => {
+    const page = req.query.page;
+    const limit = req.query.limit;
+    const skip = (page - 1) * 10;
+
+    const findAll = await articleModel.find({
+        status: "published"
+    }).skip(skip).limit(limit);// skip first n no. Documents and limit shows n no. documents after skip
+
+    res.json({
+        findAll
+    });
+}
