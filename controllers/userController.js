@@ -50,7 +50,7 @@ export const userSigninController = async (req, res) => {
     const checkPassword = await bcrypt.compare(password, find.password);
 
     if (!checkPassword) {
-        res.status(405).json({
+        return res.status(405).json({
             message: "Wrong Password"
         });
     }
