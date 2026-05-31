@@ -59,7 +59,7 @@ export const userSigninController = async (req, res) => {
 
         const token = jwt.sign({
             id: find._id
-        }, process.env.JWT_SECRET);
+        }, process.env.JWT_SECRET, { expiresIn: "2h" });
 
         res.json({
             message: "Signin successfull",
