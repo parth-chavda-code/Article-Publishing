@@ -25,9 +25,11 @@ export const createArticle = async (req, res) => {
 //Publish Article
 export const publishArticle = async (req, res) => {
     const articleId = req.params.id;
+
     if (req.article.status == "published") {
         return res.status(400).json({ msg: "Article Already Published" });
     }
+
     try {
         const updateResult = await articleModel.findByIdAndUpdate(articleId, {
             publish_date: Date.now(),
@@ -64,5 +66,18 @@ export const allArticle = async (req, res) => {
         res.status(404).json({
             msg: "Error in get article"
         });
+    }
+}
+
+//Get single article
+export const singleArticle = async (req, res) => {
+    const id = req.params.id;
+    try {
+        const findSingleArticle = await articleModel.findOne({ _id: id });
+        res.json({
+            article: findSingleArticle
+        });
+    } catch (err) {
+        return res.status(404).json({ msg: "Article not found" });
     }
 }
