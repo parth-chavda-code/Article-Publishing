@@ -3,7 +3,7 @@ import express from "express";
 import { authMiddleware } from "../middlewares/auth.js";
 import { isOwner } from "../middlewares/isOwner.js";
 //Controller
-import { createArticle, publishArticle, allArticle, singleArticle } from "../controllers/articleController.js";
+import { createArticle, publishArticle, allArticle, singleArticle, editArticle } from "../controllers/articleController.js";
 
 const articleRouter = express.Router();
 
@@ -14,6 +14,7 @@ articleRouter.patch("/:id/publish", authMiddleware, isOwner, publishArticle);
 //Get all Articles
 articleRouter.get("/all", allArticle);
 //Get single article
-articleRouter.get("/single/:id",singleArticle);
-
+articleRouter.get("/single/:id", singleArticle);
+//Edit Article
+articleRouter.put("/edit/:id", authMiddleware, isOwner, editArticle);
 export { articleRouter };

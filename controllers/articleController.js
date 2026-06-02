@@ -81,3 +81,28 @@ export const singleArticle = async (req, res) => {
         return res.status(404).json({ msg: "Article not found" });
     }
 }
+
+//Edit Article
+export const editArticle = async (req, res) => {
+    try {
+        const { title, content, status } = req.body;
+
+        const article = req.article;
+
+        article.title = title;
+        article.content = content;
+        article.status = status;
+
+        await article.save();
+
+        return res.json({
+            msg: "Article updated successfully",
+            article
+        });
+
+    } catch (err) {
+        return res.status(500).json({
+            msg: "Error when editing article"
+        });
+    }
+}
