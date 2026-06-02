@@ -14,6 +14,7 @@ export async function isOwner(req, res, next) {
     }
 
     if (findArticle.author == req.id) {
+        req.article = findArticle;
         next();
     } else {
         return res.status(403).json({
