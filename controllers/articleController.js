@@ -106,3 +106,21 @@ export const editArticle = async (req, res) => {
         });
     }
 }
+
+//Delete Article
+export const deleteArticle = async (req, res) => {
+    const article = req.article;
+
+    try {
+        await article.deleteOne();
+
+        return res.json({
+            msg: "Article Delete Successfully"
+        });
+    } catch (err) {
+        return res.status(403).json({
+            msg: "Error when deleting the documents"
+        });
+    }
+
+}
